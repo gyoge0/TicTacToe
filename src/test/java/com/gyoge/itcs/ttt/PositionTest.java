@@ -89,27 +89,27 @@ class PositionTest {
             {1, 1, 1},
             {0, 0, 0},
             {0, 0, 0}
-        }).miniMax(Integer.MIN_VALUE, Integer.MAX_VALUE));
+        }).miniMax());
         assertEquals(99, new Position(1, new int[][]{
             {1, 0, 1},
             {0, 0, 0},
             {0, 0, 0}
-        }).miniMax(Integer.MIN_VALUE, Integer.MAX_VALUE));
+        }).miniMax());
         assertEquals(-100, new Position(1, new int[][]{
             {-1, -1, -1},
             {0, 0, 0},
             {0, 0, 0}
-        }).miniMax(Integer.MIN_VALUE, Integer.MAX_VALUE));
+        }).miniMax());
         assertEquals(-99, new Position(-1, new int[][]{
             {0, -1, -1},
             {0, 0, 0},
             {0, 0, 0}
-        }).miniMax(Integer.MIN_VALUE, Integer.MAX_VALUE));
+        }).miniMax());
         assertEquals(0, new Position(1, new int[][]{
             {1, -1, 1},
             {1, -1, 1},
             {-1, 1, -1}
-        }).miniMax(Integer.MIN_VALUE, Integer.MAX_VALUE));
+        }).miniMax());
     }
 
     @Test
