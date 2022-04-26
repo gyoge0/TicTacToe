@@ -14,14 +14,18 @@ public class GrandMaster extends TicTacToePlayer {
         super(aName, aPiece);
     }
 
-    HashMap<int[][], int[]> cache = new HashMap<>();
+    HashMap<Short, int[]> cache = new HashMap<>();
+    int hits = 0;
+    int misses = 0;
 
     @Override
     public int[] playTurn() {
         int[][] board = GameController.game.getBoard();
-        if (cache.containsKey(board)) {
-            return cache.get(board);
+        if (cache.containsKey(hashState(board))) {
+            hits++;
+            return cache.get(hashState(board));
         }
+        misses++;
 
         for (int[] row : board) {
             for (int i = 0; i < row.length; i++) {
@@ -29,8 +33,19 @@ public class GrandMaster extends TicTacToePlayer {
             }
         }
         Integer[] move = new Position(getPiece() == 2 ? -1 : getPiece(), board).bestMove();
-        cache.put(board, new int[]{move[0], move[1]});
+        cache.put(hashState(board), new int[]{move[0], move[1]});
         return new int[]{move[0], move[1]};
+    }
+
+    public static short hashState(int[][] board) {
+        // convert the board to base 3
+        int hash = 0;
+        for (int[] row : board) {
+            for (int j : row) {
+                hash = hash * 3 + j;
+            }
+        }
+        return (short) hash;
     }
 }
 
