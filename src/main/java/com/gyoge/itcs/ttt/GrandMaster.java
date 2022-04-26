@@ -133,7 +133,7 @@ class Position {
 
     }
 
-    public int miniMax() {
+    public int miniMax(int alpha, int beta) {
         if (isWin(1)) {
             return 100;
         } else if (isWin(-1)) {
@@ -144,9 +144,18 @@ class Position {
 
         Integer miniMax = null;
         for (Integer[] move : possibleMoves()) {
-            int score = move(move).miniMax();
+            int score = move(move).miniMax(alpha, beta);
             if (miniMax == null || turn == 1 && score > miniMax || turn == -1 && score < miniMax) {
                 miniMax = score;
+            }
+            if (turn == 1 && score > alpha) {
+                alpha = score;
+            } else if (turn == -1 && score < beta) {
+                beta = score;
+            }
+
+            if (turn == 1 && alpha >= beta || turn == -1 && alpha <= beta) {
+                break;
             }
         }
 
@@ -165,7 +174,7 @@ class Position {
         Integer[] bestMove = null;
         Integer[][] possibleMoves = possibleMoves();
         for (Integer[] move : possibleMoves) {
-            int score = move(move).miniMax();
+            int score = move(move).miniMax(Integer.MIN_VALUE, Integer.MAX_VALUE);
             if (miniMax == null || turn == 1 && score > miniMax || turn == -1 && score < miniMax) {
                 miniMax = score;
                 bestMove = move;
