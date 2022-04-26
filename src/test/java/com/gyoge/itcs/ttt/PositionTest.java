@@ -1,22 +1,20 @@
 package com.gyoge.itcs.ttt;
 
-import java.util.Arrays;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
 
-public class PositionTest {
+class PositionTest {
 
     @Test
-    public void testToString() {
+    void testToString() {
         Position position = new Position();
         assertEquals("000\n000\n000\n", position.toString());
     }
 
     @Test
-    public void testNew() {
+    void testNew() {
         Position position;
 
         position = new Position();
@@ -34,7 +32,7 @@ public class PositionTest {
 
 
     @Test
-    public void testMove() {
+    void testMove() {
         Position position = new Position().move(new Integer[]{0, 0});
 
         assertEquals(-1, position.getTurn());
@@ -42,7 +40,7 @@ public class PositionTest {
     }
 
     @Test
-    public void testPossibleMoves() {
+    void testPossibleMoves() {
         Position position = new Position()
             .move(new Integer[]{0, 0})
             .move(new Integer[]{0, 1})
@@ -62,7 +60,7 @@ public class PositionTest {
     }
 
     @Test
-    public void testIsWin() {
+    void testIsWin() {
         assertTrue(new Position(1, new int[][]{
             {1, 1, 1},
             {0, 0, 0},
@@ -86,36 +84,36 @@ public class PositionTest {
     }
 
     @Test
-    public void testMiniMax() {
+    void testMiniMax() {
         assertEquals(100, new Position(1, new int[][]{
             {1, 1, 1},
             {0, 0, 0},
             {0, 0, 0}
-        }).miniMax());
+        }).miniMax(Integer.MIN_VALUE, Integer.MAX_VALUE));
         assertEquals(99, new Position(1, new int[][]{
             {1, 0, 1},
             {0, 0, 0},
             {0, 0, 0}
-        }).miniMax());
+        }).miniMax(Integer.MIN_VALUE, Integer.MAX_VALUE));
         assertEquals(-100, new Position(1, new int[][]{
             {-1, -1, -1},
             {0, 0, 0},
             {0, 0, 0}
-        }).miniMax());
+        }).miniMax(Integer.MIN_VALUE, Integer.MAX_VALUE));
         assertEquals(-99, new Position(-1, new int[][]{
             {0, -1, -1},
             {0, 0, 0},
             {0, 0, 0}
-        }).miniMax());
+        }).miniMax(Integer.MIN_VALUE, Integer.MAX_VALUE));
         assertEquals(0, new Position(1, new int[][]{
             {1, -1, 1},
             {1, -1, 1},
             {-1, 1, -1}
-        }).miniMax());
+        }).miniMax(Integer.MIN_VALUE, Integer.MAX_VALUE));
     }
 
     @Test
-    public void testBestMove() {
+    void testBestMove() {
         assertArrayEquals(new Integer[]{0, 1}, new Position(1, new int[][]{
             {1, 0, 1},
             {0, 0, 0},
