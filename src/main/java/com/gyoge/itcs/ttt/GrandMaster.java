@@ -168,7 +168,7 @@ class Position {
         }
 
         if (miniMax == null) {
-            throw new RuntimeException("No moves found");
+            throw new NoMovesException("No moves found");
         }
 
         // If it's our turn, penalize 1 for the depth (miniMax - 1))
@@ -190,10 +190,18 @@ class Position {
         }
 
         if (miniMax == null) {
-            throw new RuntimeException("No moves found");
+            throw new NoMovesException("No moves found");
         }
 
         return bestMove;
+    }
+
+}
+
+class NoMovesException extends RuntimeException {
+
+    public NoMovesException(String message) {
+        super(message);
     }
 
 }
