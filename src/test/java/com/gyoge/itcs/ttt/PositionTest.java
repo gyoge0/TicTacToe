@@ -125,9 +125,9 @@ class PositionTest {
             {0, 0, 0}
         }).bestMove());
         assertArrayEquals(new Integer[]{1, 1}, new Position(-1, new int[][]{
-            {0, 0, 0},
+            {0, 1, 0},
             {-1, 0, -1},
-            {0, 0, 1}
+            {0, 1, 1}
         }).bestMove());
 
     }
