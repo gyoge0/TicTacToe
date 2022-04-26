@@ -1,6 +1,7 @@
 package com.gyoge.itcs.ttt;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -13,16 +14,23 @@ public class GrandMaster extends TicTacToePlayer {
         super(aName, aPiece);
     }
 
+    HashMap<int[][], int[]> cache = new HashMap<>();
+
     @Override
     public int[] playTurn() {
         int[][] board = GameController.game.getBoard();
+        if (cache.containsKey(board)) {
+            return cache.get(board);
+        }
+
         for (int[] row : board) {
             for (int i = 0; i < row.length; i++) {
                 row[i] = row[i] == 2 ? -1 : row[i];
             }
         }
         Integer[] move = new Position(getPiece() == 2 ? -1 : getPiece(), board).bestMove();
-        return new int[] { move[0], move[1] };
+        cache.put(board, new int[]{move[0], move[1]});
+        return new int[]{move[0], move[1]};
     }
 }
 
