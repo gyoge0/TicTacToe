@@ -164,7 +164,7 @@ public class Competition {
 
     public static void main(String[] args) {
         Competition competition = new Competition();
-        competition.playGame(100); // 100 games on each side, total of 200 games
+        competition.playGame(500); // 500 games on each side, total of 1000 games
 
         System.out.println("<<<------- SCORES ------->>>");
 
