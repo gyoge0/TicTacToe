@@ -1,8 +1,5 @@
 package game;
 
-import com.gyoge.itcs.ttt.GrandMaster;
-import com.gyoge.itcs.ttt.MinimaxPlayer;
-
 import java.util.Scanner;
 
 /**
@@ -16,8 +13,8 @@ public class GameController {
     // To test your bot, replace one of the human players with your bot and play against it
     // p1 is X and goes first
     // p2 is 0 and goes second
-    private static TicTacToePlayer p1 = new GrandMaster("Mr. Cool", 1);
-    private static TicTacToePlayer p2 = new MinimaxPlayer("Ms. Wissler", 2);
+    private static TicTacToePlayer p1 = new HumanPlayer("Mr. Cool", 1);
+    private static TicTacToePlayer p2 = new RandomPlayer("Ms. Wissler", 2);
 
     // Copy of the board from TicTacToe.java for players to access
     private static int[][] board;
