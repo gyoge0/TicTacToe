@@ -39,6 +39,8 @@ public class Competition {
         .getSubTypesOf(TicTacToePlayer.class)
         .stream().toList();
 
+    static final HashMap<Class<? extends TicTacToePlayer>, TicTacToePlayer> PLAYER_CACHE = new HashMap<>();
+
     /**
      * Play a game of TicTacToe between all players and add their scores to the master map.
      *
@@ -87,18 +89,30 @@ public class Competition {
                 }
                 // Print out the match-up
                 // Padded 30 characters because Pius can't be a normal person with a normal name
-                System.out.printf("%-30s vs %30s%n", p1Class.getSimpleName(), p2Class.getSimpleName());
+                System.out.printf("%-30s vs %30s%n", p1Class.getSimpleName(),
+                    p2Class.getSimpleName());
 
                 // Instantiate the players from their reflected classes
                 TicTacToePlayer p1;
                 TicTacToePlayer p2;
                 try {
-                    p1 = p1Class
-                        .getDeclaredConstructor(String.class, int.class)
-                        .newInstance("p1", 1);
-                    p2 = p2Class
-                        .getDeclaredConstructor(String.class, int.class)
-                        .newInstance("p2", 2);
+                    if (PLAYER_CACHE.containsKey(p1Class)) {
+                        p1 = PLAYER_CACHE.get(p1Class);
+                    } else {
+                        p1 = p1Class
+                            .getDeclaredConstructor(String.class, int.class)
+                            .newInstance("p1", 1);
+                        PLAYER_CACHE.put(p1Class, p1);
+                    }
+
+                    if (PLAYER_CACHE.containsKey(p2Class)) {
+                        p2 = PLAYER_CACHE.get(p2Class);
+                    } else {
+                        p2 = p2Class
+                            .getDeclaredConstructor(String.class, int.class)
+                            .newInstance("p2", 2);
+                        PLAYER_CACHE.put(p2Class, p2);
+                    }
                 } catch (Exception e) {
                     // Something went wrong
                     throw new RuntimeException(e);
