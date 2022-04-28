@@ -1,11 +1,9 @@
 package game;
 
-import com.gyoge.itcs.ttt.*;
+import com.gyoge.itcs.ttt.GrandMaster;
 import com.gyoge.itcs.ttt.MinimaxPlayer;
 
 import java.util.Scanner;
-
-import opponents.*;
 
 /**
  * This class's job is to coordinate between the players and the game code, it is the middle man A
