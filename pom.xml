@@ -20,7 +20,15 @@
       <version>5.8.2</version>
       <scope>test</scope>
     </dependency>
-  </dependencies>
 
+
+    <!-- Reflect over all "opponents" classes -->
+    <dependency>
+      <groupId>org.reflections</groupId>
+      <artifactId>reflections</artifactId>
+      <version>0.10.2</version>
+    </dependency>
+
+  </dependencies>
 
 </project>
