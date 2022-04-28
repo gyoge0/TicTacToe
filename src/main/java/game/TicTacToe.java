@@ -8,7 +8,8 @@ package game;
  */
 public class TicTacToe {
 
-    private int[][] board; //the TicTacToe board
+    // modified to "protected" so that TicTacToeCompetition can access it
+    protected int[][] board; //the TicTacToe board
 
     public TicTacToe() {
         board = new int[3][3];
