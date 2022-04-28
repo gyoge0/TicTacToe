@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import game.TicTacToe;
 import game.TicTacToePlayer;
@@ -39,7 +40,7 @@ public class Competition {
         .getSubTypesOf(TicTacToePlayer.class)
         .stream().toList();
 
-    static final HashMap<Class<? extends TicTacToePlayer>, TicTacToePlayer> PLAYER_CACHE = new HashMap<>();
+    static final Map<Class<? extends TicTacToePlayer>, TicTacToePlayer> PLAYER_CACHE = new ConcurrentHashMap<>();
 
     /**
      * Play a game of TicTacToe between all players and add their scores to the master map.
